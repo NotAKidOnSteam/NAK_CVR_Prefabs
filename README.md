@@ -1,5 +1,7 @@
-## NotAKids ChilloutVR Mods
+## NotAKids ChilloutVR Prefabs
 My ChilloutVR prefabs in one fat repo.
+
+If I happen to make something interesting I will throw it onto this repo.
 
 ---
 
