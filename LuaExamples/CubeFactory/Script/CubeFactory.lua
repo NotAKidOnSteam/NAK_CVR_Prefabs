@@ -25,7 +25,7 @@ function ObjectPool:Initialize(prefab, parent, initialSize)
     self.prefab = prefab
     self.parent = parent or nil
 
-    for i = 1, initialSize do
+    for _ = 1, initialSize do
         local obj = self:CreateNewObject()
         table.insert(self.pool, obj)
     end
@@ -37,7 +37,7 @@ function ObjectPool:CreateNewObject()
 
     DebugPrint("Creating new object")
 
-    local obj = UnityEngine.GameObject.Instantiate(self.prefab, self.parent) -- BUG: Instantiation parent is not functioning, will just dirty scene
+    local obj = UnityEngine.GameObject.Instantiate(self.prefab, transform) -- BUG: Instantiation parent is not functioning, will just dirty scene
     -- obj.transform.parent = self.parent -- fuck
     -- obj.transform.SetParent(self.parent) -- fuck 2
     -- obj.transform.SetParent(transform) -- function call doesn't match any overload
@@ -93,7 +93,7 @@ function PlayerManager:CheckForPlayerChanges()
     -- check for player leaves
     elseif currentCount < self.currentCount then
         local currentPlayers = PlayerAPI.AllPlayers
-        for userId, cube in pairs(self.playerCubes) do
+        for userId, _ in pairs(self.playerCubes) do
             local playerExists = false
             for _, player in ipairs(currentPlayers) do
                 if player.UserID == userId then
